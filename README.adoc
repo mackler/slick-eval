@@ -6,7 +6,7 @@ First, clone the application repository and then be in its directory.
 .Enter these two commands at your shell prompt:
 --
 git clone https://github.com/mackler/slick-eval.git
-cd slickdemo
+cd slick-eval
 --
 
 Now you are ready to enter the tutorial environment.  Do so using the command `sbt
@@ -16,10 +16,10 @@ console` at the shell prompt.  You should see something similar to this:
 .Starting the sbt console:
 --
 $ sbt console
-[info] Loading global plugins from /home/mackler/.sbt/0.13/plugins
-[info] Loading project definition from /home/mackler/tmp/slick-intro/project
-[info] Set current project to slick-intro (in build file:/home/mackler/tmp/slick-intro/)
-[info] Compiling 3 Scala sources to /home/mackler/tmp/slick-intro/target/scala-2.11/classes...
+[info] Loading global plugins from /home/random/.sbt/0.13/plugins
+[info] Loading project definition from /home/random/tmp/slick-eval/project
+[info] Set current project to slick-eval (in build file:/home/random/tmp/slick-eval/)
+[info] Compiling 3 Scala sources to /home/random/tmp/slick-eval/target/scala-2.11/classes...
 [info] Starting scala interpreter...
 [info] 
 Welcome to Scala version 2.11.4 (Java HotSpot(TM) 64-Bit Server VM, Java 1.7.0_71).
