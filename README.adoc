@@ -1,0 +1,82 @@
+=== Running this demo application: Step-by-Step
+
+First, clone the application repository and then be in its directory.
+
+[source]
+.Enter these two commands at your shell prompt:
+--
+git clone https://github.com/mackler/slick-eval.git
+cd slickdemo
+--
+
+Now you are ready to enter the tutorial environment.  Do so using the command `sbt
+console` at the shell prompt.  You should see something similar to this:
+
+[source]
+.Starting the sbt console:
+--
+$ sbt console
+[info] Loading global plugins from /home/mackler/.sbt/0.13/plugins
+[info] Loading project definition from /home/mackler/tmp/slick-intro/project
+[info] Set current project to slick-intro (in build file:/home/mackler/tmp/slick-intro/)
+[info] Compiling 3 Scala sources to /home/mackler/tmp/slick-intro/target/scala-2.11/classes...
+[info] Starting scala interpreter...
+[info] 
+Welcome to Scala version 2.11.4 (Java HotSpot(TM) 64-Bit Server VM, Java 1.7.0_71).
+Type in expressions to have them evaluated.
+Type :help for more information.
+
+scala>
+--
+
+[source]
+.Next, we need a couple of imports:
+--
+scala> import learn._; import slick.driver.SQLiteDriver.api._
+import learn._
+import slick.driver.SQLiteDriver.api._
+
+scala>
+--
+
+Now you are ready to start using Slick.
+
+The database you are using has three relational tables, named
+`suppliers`, `parts`, and `shipments`.  This tutorial environment
+includes an `eval` feature that will evaluate a Slick expression and
+print the result.  For example, you can print the value of the
+`suppliers` table by entering `eval { suppliers }`:
+
+[source]
+--
+scala> eval { suppliers }
+Supplier(S3,Blake,30,Paris)
+Supplier(S4,Clark,20,London)
+Supplier(S2,Jones,10,Paris)
+Supplier(S1,Smith,20,London)
+Supplier(S5,Adams,30,Athens)
+
+scala>
+--
+
+`eval` evaluates Slick Queries.  Updating is an Action, not a query,
+so to update the database, use the `run` method of the `db` object.
+
+[source]
+.Example: Updating the name of supplier `Blake` to `Flake`:
+--
+scala> db run { suppliers.filter(_.snum === "S3").map(_.sname).update("Flake") }
+res2: scala.concurrent.Future[Int] = scala.concurrent.impl.Promise$DefaultPromise@41e1416f
+--
+
+If you update ar delete the database as distributed, then you may want
+to reset the tables to their original values.  The root directory of
+this repository contains a shell command named `createdb` that does
+this.
+
+[source]
+.To recreate or refresh the sample `sqlite` database, do this:
+--
+./createdb
+--
+

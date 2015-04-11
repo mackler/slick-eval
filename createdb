@@ -1,0 +1,10 @@
+#!/bin/sh
+SQL=sample-data.sql
+DATABASE=data.sqlite
+if [ ! -e $SQL ]; then echo Error: data file \"$SQL\" is missing && exit 2; fi
+if [ -e $DATABASE ]; then
+  rm $DATABASE || exit 1
+  RESULT=refreshed
+else RESULT=created
+fi
+cat $SQL | sqlite3 $DATABASE && echo Success: $RESULT sqlite database \"$DATABASE\"
